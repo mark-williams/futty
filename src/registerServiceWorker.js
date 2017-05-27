@@ -10,7 +10,7 @@
 
 // Enabling service workers in development mode also for now
 function shouldRegister() {
-  return process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'development'
+  return process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'development';
 }
 
 export default function register() {

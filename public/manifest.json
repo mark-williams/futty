@@ -1,5 +1,6 @@
 {
     "name": "Futty",
+    "short_name": "Futty",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",

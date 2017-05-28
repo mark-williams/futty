@@ -8,18 +8,25 @@
 // To learn more about the benefits of this model, read https://goo.gl/KwvDNy.
 // This link also includes instructions on opting out of this behavior.
 
+/* eslint no-restricted-globals: ["error", "self]*/
+/* eslint no-console: "warn" */
+
 // Enabling service workers in development mode also for now
-function shouldRegister() {
+function shouldUseServiceWorker() {
   return process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'development';
 }
 
+const useServiceWorker = shouldUseServiceWorker();
+
 export default function register() {
-  if (shouldRegister() && 'serviceWorker' in navigator) {
+  if (useServiceWorker && 'serviceWorker' in navigator) {
     window.addEventListener('load', () => {
       const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
       navigator.serviceWorker
         .register(swUrl)
         .then(registration => {
+          console.log('ServiceWorker registration successful with scope: ', registration.scope);
+
           registration.onupdatefound = () => {
             const installingWorker = registration.installing;
             installingWorker.onstatechange = () => {
@@ -29,19 +36,19 @@ export default function register() {
                   // the fresh content will have been added to the cache.
                   // It's the perfect time to display a "New content is
                   // available; please refresh." message in your web app.
-                  // console.log('New content is available; please refresh.');
+                  console.log('New content is available; please refresh.');
                 } else {
                   // At this point, everything has been precached.
                   // It's the perfect time to display a
                   // "Content is cached for offline use." message.
-                  // console.log('Content is cached for offline use.');
+                  console.log('Content is cached for offline use.');
                 }
               }
             };
           };
         })
-        .catch(() => {
-          // console.error('Error during service worker registration:', error);
+        .catch((error) => {
+          console.log('Error during service worker registration:', error);
         });
     });
   }
@@ -54,3 +61,4 @@ export function unregister() {
     });
   }
 }
+

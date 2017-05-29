@@ -1,9 +1,19 @@
 import React from 'react';
 
-const Team = () => (
-  <div>
-    <h3>Team details will go here</h3>
-  </div>
-);
+const getTeamName = (n) => {
+  return n
+    .replace('_', ' ')
+    .replace(/\b\w/g, l => l.toUpperCase());
+};
+
+const Team = ({match}) => {
+  const teamName = match.params.name && getTeamName(match.params.name);
+  return (
+    <div>
+      <h2>{teamName}</h2>
+      <h3>Team details will go here</h3>
+    </div>
+  );
+};
 
 export default Team;

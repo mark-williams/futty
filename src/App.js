@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import League from './components/League';
-import Team from './components/Team';
+import { BrowserRouter as Router } from 'react-router-dom';
+import routes from './routes';
 import './App.css';
 
 class App extends Component {
@@ -14,10 +13,7 @@ class App extends Component {
         </div>
         <div className="content">
           <Router>
-            <div>
-              <Route path="/league" component={League} />
-              <Route path="/team" component={Team} />
-            </div>
+            {routes}
           </Router>
         </div>
       </div>
@@ -26,11 +22,3 @@ class App extends Component {
 }
 
 export default App;
-
- {/*<Router>
-    <div>
-      <Route path="/" component={App} />
-      <Route path="/league" component={League} />
-      <Route path="/team" component={Team} />
-    </div>
-  </Router>,*/}

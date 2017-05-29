@@ -1,7 +1,12 @@
 import React from 'react';
 import { Route } from 'react-router';
-import App from './App';
+import League from './components/League';
+import Team from './components/Team';
 
-const routes = <Route path="/" component={App} />;
+const routes =
+  (<div>
+    <Route path="/league" component={League} />
+    <Route path="/team/:name" component={Team} />
+  </div>);
 
 export default routes;

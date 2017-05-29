@@ -11,29 +11,39 @@ class League extends React.Component {
   }
 
   componentDidMount() {
-    let teams = [
-      { name: 'Chelsea' },
-      { name: 'Tottenham Hotspur' },
-      { name: 'Manchester City' },
-      { name: 'Liverpool' }
-    ];
-
-    const myHeaders = new Headers();
-    myHeaders.append('X-Auth-Token', 'f72b1391ce7c41fdba548dfeede42897');
-    fetch('http://api.football-data.org/v1/competitions/426/leagueTable', { headers: myHeaders })
-      .then((resp) => { console.log(resp); return resp.json(); })
-      .then((data) => this.setState({ data }))
+    const headers = new Headers();
+    headers.append('X-Auth-Token', 'f72b1391ce7c41fdba548dfeede42897');
+    fetch('http://api.football-data.org/v1/competitions/426/leagueTable', { headers: headers })
+      .then((resp) => resp.json())
+      .then((data) => this.setState({ teams: data.standing }))
       .catch((e) => console.log('Error:', e));
+  }
 
-    this.setState({ teams });
+  renderHeader() {
+    return (
+      <div className="league-table__row">
+        <div className="league-table__row--name header">Team</div>
+        <div className="league-table__row--amount header">Points</div>
+      </div>
+    );
+  }
+
+  renderRow(team) {
+    return (
+      <div key={team.teamName} className="league-table__row">
+        <Link className="league-table__row--name" key={team.teamName} to={`/team/${team.teamName}`}>{team.teamName}</Link>
+        <div className="league-table__row--amount">{team.points}</div>
+      </div>
+    );
   }
 
   render() {
     return (
-      <div>
+      <div className="league">
         <h2>Premier League 2017-17</h2>
-        <div>
-          {this.state.teams.map((t) => <div key={t.name}><Link to={`/team/${t.name}`}>{t.name}</Link></div>)}
+        <div className="league-table">
+          {this.renderHeader()}
+          {this.state.teams.map((t) => this.renderRow(t))}
         </div>
       </div>
     );

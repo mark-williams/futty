@@ -18,7 +18,7 @@ const Team = ({match}) => {
 };
 
 Team.propTypes = {
-  match: PropTypes.string
+  match: PropTypes.object
 };
 
 export default Team;

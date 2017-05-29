@@ -1,6 +1,7 @@
 .App {
   text-align: center;
   color: hsl(0, 0%, 32%);
+  font-size: 14px;
 }
 
 .App-logo {
@@ -10,7 +11,7 @@
 
 .App-header {
   background-color: hsl(0, 100%, 19%);
-  height: 100px;
+  height: 70px;
   padding: 20px;
   color: hsl(0, 0%, 91%);
 }
@@ -23,3 +24,48 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.league {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.league-table {
+  width: 30%;
+  min-width: 200px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+} 
+
+.league-table__row {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  margin-bottom: 8px;
+}
+
+.league-table__row--name {
+  flex: 5;
+}
+
+.league-table__row--amount {
+  flex: 1;
+  text-align: right;
+}
+
+.league-table .header {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+a {
+  text-decoration: none;
+  color: hsl(0, 0%, 20%);
+}
+
+a:visited {
+  color:  hsl(0, 0%, 20%);
+}
+

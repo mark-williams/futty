@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const getTeamName = (n) => {
   return n
@@ -14,6 +15,10 @@ const Team = ({match}) => {
       <h3>Team details will go here</h3>
     </div>
   );
+};
+
+Team.propTypes = {
+  match: PropTypes.string
 };
 
 export default Team;

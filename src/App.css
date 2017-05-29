@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  color: hsl(0, 0%, 32%);
 }
 
 .App-logo {
@@ -8,10 +9,10 @@
 }
 
 .App-header {
-  background-color: #222;
+  background-color: hsl(0, 100%, 19%);
   height: 100px;
   padding: 20px;
-  color: white;
+  color: hsl(0, 0%, 91%);
 }
 
 .App-intro {

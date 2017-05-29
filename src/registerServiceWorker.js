@@ -9,7 +9,7 @@
 // This link also includes instructions on opting out of this behavior.
 
 /* eslint no-restricted-globals: ["error", "self]*/
-/* eslint no-console: "warn" */
+/* eslint no-console: "off" */
 
 // Enabling service workers in development mode also for now
 function shouldUseServiceWorker() {

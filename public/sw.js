@@ -53,7 +53,22 @@ self.addEventListener('fetch', function (event) {
         }
 
         console.log('fetching: ' + event.request.url);
-        return fetch(event.request);
+        return fetchAndCache(event.request);
       })
   );
 });
+
+function fetchAndCache(request) {
+  return fetch(request)
+    .then(function (res) {
+      if (res) {
+        return caches.open(cacheVersion)
+          .then(function (cache) {
+            return cache.put(request, res.clone())
+              .then(function () {
+                return res;
+              });
+          });
+      }
+    });
+}

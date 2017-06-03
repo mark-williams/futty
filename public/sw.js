@@ -1,5 +1,5 @@
 
-const cacheVersion = 'v1';
+const cacheVersion = 'v2';
 const cacheItems = [
   'favicon-16x16.ico',
   'favicon-32x32.ico',
@@ -27,6 +27,19 @@ self.addEventListener('install', function (event) {
   );
 });
 
+self.addEventListener('activate', function (event) {
+  event.waitUntil(
+    caches.keys()
+      .then(function (keys) {
+        return Promise.all(keys.filter(function (key) {
+          return key !== cacheVersion;
+        }).map(function (key) {
+          return caches.delete(key);
+        }));
+      })
+  );
+});
+
 self.addEventListener('fetch', function (event) {
   event.respondWith(
     caches.match(event.request)
@@ -37,7 +50,6 @@ self.addEventListener('fetch', function (event) {
 
         if (!navigator.onLine) {
           return caches.match(new Request('offline.html'));
-          //return new Response('<h2>Currently offline</h2>', { headers: { 'Content-Type': 'text/html' } });
         }
 
         console.log('fetching: ' + event.request.url);

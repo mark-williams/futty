@@ -23,7 +23,7 @@ Team.propTypes = {
 
 const teamWithLifecycle = lifecycle({
   componentDidMount() {
-    getTeam(this.props.match.params.name)
+    getTeam(this.props.match.params.id)
       .then((resp) => resp.json())
       .then(team => this.setState({ team }));
   }

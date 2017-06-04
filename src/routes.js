@@ -6,7 +6,7 @@ import Team from './components/Team';
 const routes =
   (<Switch>
     <Route path="/league" component={League} />
-    <Route path="/team/:name" component={Team} />
+    <Route path="/team/:id" component={Team} />
     <Route component={League} />
   </Switch>);
 

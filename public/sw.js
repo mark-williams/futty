@@ -1,5 +1,5 @@
 
-const cacheVersion = 'v4.94';
+const cacheVersion = 'v4.97';
 const cacheItems = [
   'favicon-16x16.ico',
   'favicon-32x32.ico',

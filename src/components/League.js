@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { getLeagueTable } from '../services/statsService';
 
 class League extends React.Component {
   constructor() {
@@ -11,10 +12,7 @@ class League extends React.Component {
   }
 
   componentDidMount() {
-    const headers = new Headers();
-    headers.append('X-Auth-Token', 'f72b1391ce7c41fdba548dfeede42897');
-    fetch('http://api.football-data.org/v1/competitions/426/leagueTable', { headers: headers })
-      .then((resp) => resp.json())
+    getLeagueTable()
       .then((data) => this.setState({ teams: data.standing }))
       .catch((e) => console.log('Error:', e));
   }

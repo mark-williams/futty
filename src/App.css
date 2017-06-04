@@ -73,3 +73,6 @@ a:visited {
   color:  hsl(0, 0%, 20%);
 }
 
+.team__badge{
+  width: 100px;
+}

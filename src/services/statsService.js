@@ -1,9 +1,18 @@
 const baseUrl = 'http://api.football-data.org/v1'; 
-
-const getLeagueTable = () => {
+const apiKey = 'f72b1391ce7c41fdba548dfeede42897';
+const getHeaders = () => {
   const headers = new Headers();
-  headers.append('X-Auth-Token', 'f72b1391ce7c41fdba548dfeede42897');
-  return fetch(baseUrl + '/competitions/426/leagueTable', { headers: headers });
+  headers.append('X-Auth-Token', apiKey);
+
+  return headers;
 };
 
-export { getLeagueTable };
+const getLeagueTable = () => {
+  return fetch(baseUrl + '/competitions/426/leagueTable', { headers: getHeaders() });
+};
+
+const getTeam = (id) => {
+  return fetch(`${baseUrl}/teams/${id}`, { headers: getHeaders() });
+};
+
+export { getLeagueTable, getTeam };

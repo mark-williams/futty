@@ -1,18 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { lifecycle } from 'recompose';
+import { getTeam } from '../services/statsService';
 
-const getTeamName = (n) => {
-  return n
-    .replace('_', ' ')
-    .replace(/\b\w/g, l => l.toUpperCase());
-};
+const Team = ({team}) => {
+  if (!team) {
+    return null;
+  }
 
-const Team = ({match}) => {
-  const teamName = match.params.name && getTeamName(match.params.name);
   return (
     <div>
-      <h2>{teamName}</h2>
-      <h3>Team details will go here</h3>
+      <h2>{team.shortName}</h2>
+      <img className="team__badge" src={team.crestUrl} />
     </div>
   );
 };
@@ -21,4 +20,14 @@ Team.propTypes = {
   match: PropTypes.object
 };
 
-export default Team;
+
+const teamWithLifecycle = lifecycle({
+  componentDidMount() {
+    getTeam(this.props.match.params.name)
+      .then((resp) => resp.json())
+      .then(team => this.setState({ team }));
+  }
+})(Team);
+
+export default teamWithLifecycle;
+export { Team };

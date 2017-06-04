@@ -13,6 +13,7 @@ class League extends React.Component {
 
   componentDidMount() {
     getLeagueTable()
+      .then((resp) => resp.json())
       .then((data) => this.setState({ teams: data.standing }))
       .catch((e) => console.log('Error:', e));
   }
@@ -41,7 +42,7 @@ class League extends React.Component {
         <h2>Premier League 2017-17</h2>
         <div className="league-table">
           {this.renderHeader()}
-          {this.state.teams.map((t) => this.renderRow(t))}
+          {this.state.teams && this.state.teams.map((t) => this.renderRow(t))}
         </div>
       </div>
     );

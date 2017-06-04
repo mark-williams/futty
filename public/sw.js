@@ -1,5 +1,5 @@
 
-const cacheVersion = 'v2';
+const cacheVersion = 'v3.1';
 const cacheItems = [
   'favicon-16x16.ico',
   'favicon-32x32.ico',
@@ -9,19 +9,10 @@ const cacheItems = [
   'offline.html'
 ];
 
-self.addEventListener('install', function () {
-  console.log('Service worker installed at ' + new Date().toLocaleTimeString());
-});
-
-self.addEventListener('activate', function () {
-  console.log('Service worker activated at ' + new Date().toLocaleTimeString());
-});
-
 self.addEventListener('install', function (event) {
   event.waitUntil(
     caches.open(cacheVersion)
       .then(function (cache) {
-        console.log('Initialising caches...');
         return cache.addAll(cacheItems);
       })
   );
@@ -52,7 +43,6 @@ self.addEventListener('fetch', function (event) {
           return caches.match(new Request('offline.html'));
         }
 
-        console.log('fetching: ' + event.request.url);
         return fetchAndCache(event.request);
       })
   );

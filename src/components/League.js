@@ -14,8 +14,21 @@ class League extends React.Component {
   componentDidMount() {
     getLeagueTable()
       .then((resp) => resp.json())
-      .then((data) => this.setState({ teams: data.standing }))
+      .then((data) => this.setState({ teams: this.mapLeagueData(data.standing) }))
       .catch((e) => console.log('Error:', e));
+  }
+
+  mapLeagueData(data) {
+    return data.map((team) => {
+      return { ...team, id: this.getTeamId(team) };
+    })
+  }
+
+  getTeamId(team) {
+    // Sadly the api doesn't include the id of the team in its response, so we'll have to
+    // extract it from the link it provides
+    const parts = team._links.team.href.split('/');
+    return parseInt(parts[parts.length - 1], 10);
   }
 
   renderHeader() {
@@ -30,7 +43,7 @@ class League extends React.Component {
   renderRow(team) {
     return (
       <div key={team.teamName} className="league-table__row">
-        <Link className="league-table__row--name" key={team.teamName} to={`/team/${team.teamName}`}>{team.teamName}</Link>
+        <Link className="league-table__row--name" key={team.teamName} to={`/team/${team.id}`}>{team.teamName}</Link>
         <div className="league-table__row--amount">{team.points}</div>
       </div>
     );

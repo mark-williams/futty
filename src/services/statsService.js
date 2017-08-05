@@ -8,7 +8,7 @@ const getHeaders = () => {
 };
 
 const getLeagueTable = () => {
-  return fetch(baseUrl + '/competitions/426/leagueTable', { headers: getHeaders() });
+  return fetch(baseUrl + '/competitions/445/leagueTable', { headers: getHeaders() });
 };
 
 const getTeam = (id) => {

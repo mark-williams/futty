@@ -13,7 +13,7 @@
 
 // Enabling service workers in development mode also for now
 function shouldUseServiceWorker() {
-  return process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'development';
+  return process.env.NODE_ENV === 'production' || process.env.NODE_ENV === '_development';
 }
 
 const useServiceWorker = shouldUseServiceWorker();

@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { lifecycle } from 'recompose';
-import { getTeam } from '../services/statsService';
+import { getTeam, getFixtures } from '../services/statsService';
 
-const Team = ({team}) => {
+const Team = ({team, fixtures}) => {
   if (!team) {
     return null;
   }
@@ -11,7 +11,7 @@ const Team = ({team}) => {
   return (
     <div>
       <h2>{team.shortName}</h2>
-      <img className="team__badge" src={team.crestUrl} />
+      <img className="team__badge" alt="team badge" src={team.crestUrl} />
     </div>
   );
 };
@@ -20,12 +20,21 @@ Team.propTypes = {
   team: PropTypes.object
 };
 
+const getTeamData = (id) => {
+  const fetchTeam = getTeam(id);
+  const fetchFixtures = getFixtures(id);
+
+  return Promise.all([fetchTeam, fetchFixtures])
+    .then(responses => Promise.all(responses.map(resp => resp.json()))
+  );
+};
+
 
 const teamWithLifecycle = lifecycle({
   componentDidMount() {
-    getTeam(this.props.match.params.id)
-      .then((resp) => resp.json())
-      .then(team => this.setState({ team }));
+    const teamId = this.props.match.params.id;
+    getTeamData(teamId)
+      .then(results => this.setState({ team: results[0], fixtures: results[1].fixtures }));
   }
 })(Team);
 

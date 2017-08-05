@@ -15,4 +15,8 @@ const getTeam = (id) => {
   return fetch(`${baseUrl}/teams/${id}`, { headers: getHeaders() });
 };
 
-export { getLeagueTable, getTeam };
+const getFixtures = (id) => {
+  return fetch(`${baseUrl}/teams/${id}/fixtures`, { headers: getHeaders() });
+};
+
+export { getLeagueTable, getTeam, getFixtures };

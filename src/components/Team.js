@@ -17,7 +17,8 @@ const Team = ({team, fixtures}) => {
 };
 
 Team.propTypes = {
-  team: PropTypes.object
+  team: PropTypes.object,
+  fixtures: PropTypes.object
 };
 
 const getTeamData = (id) => {
@@ -25,8 +26,7 @@ const getTeamData = (id) => {
   const fetchFixtures = getFixtures(id);
 
   return Promise.all([fetchTeam, fetchFixtures])
-    .then(responses => Promise.all(responses.map(resp => resp.json()))
-  );
+    .then(responses => Promise.all(responses.map(resp => resp.json())));
 };
 
 
@@ -34,7 +34,8 @@ const teamWithLifecycle = lifecycle({
   componentDidMount() {
     const teamId = this.props.match.params.id;
     getTeamData(teamId)
-      .then(results => this.setState({ team: results[0], fixtures: results[1].fixtures }));
+      .then((results) => this.setState({ team: results[0], fixtures: results[1].fixtures }))
+      .catch(() => this.setState({ error: 'Error retrieving data' }));
   }
 })(Team);
 

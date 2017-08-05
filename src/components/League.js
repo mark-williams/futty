@@ -15,13 +15,13 @@ class League extends React.Component {
     getLeagueTable()
       .then((resp) => resp.json())
       .then((data) => this.setState({ teams: this.mapLeagueData(data.standing) }))
-      .catch((e) => console.log('Error:', e));
+      .catch(() => this.setState({ error: 'Failed to retrieve data' }));
   }
 
   mapLeagueData(data) {
     return data.map((team) => {
       return { ...team, id: this.getTeamId(team) };
-    })
+    });
   }
 
   getTeamId(team) {

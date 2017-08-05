@@ -1,4 +1,4 @@
-const baseUrl = 'http://api.football-data.org/v1'; 
+const baseUrl = 'http://api.football-data.org/v1';
 const apiKey = 'f72b1391ce7c41fdba548dfeede42897';
 const getHeaders = () => {
   const headers = new Headers();

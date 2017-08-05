@@ -17,7 +17,7 @@ const Team = ({team}) => {
 };
 
 Team.propTypes = {
-  match: PropTypes.object
+  team: PropTypes.object
 };
 
 

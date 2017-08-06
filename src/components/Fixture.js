@@ -6,7 +6,20 @@ const Fixture = ({fixture}) => {
   const date = new Date(fixture.date).toLocaleDateString();
   return (
     <div className="fixture" key={date}>
-      {date} {getShortName(fixture.homeTeamName)} - {getShortName(fixture.awayTeamName)}
+      <div className="fixture-date">
+        {date}
+      </div>
+      <div className="match">
+        <div className="home-team">
+          {getShortName(fixture.homeTeamName)}
+        </div>
+        <div className="result">
+          -
+        </div>
+        <div className="away-team">
+          {getShortName(fixture.awayTeamName)}
+        </div>
+      </div>
     </div>
   );
 };

@@ -1,36 +1,67 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-//import styled from 'emotion/react';
+import styled from 'styled-components';
 import getShortName from '../utils/team-utils';
 
 
-// const StyledFixture = styled.div`
-//   color: red;
-// `;
+const StyledFixture = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-bottom: 1.4rem;
+  align-items: center;
+ `;
 
-// const Fixture = ({fixture}) => {
-//   return <StyledFixture>blah</StyledFixture>;
-// }
+
+const MatchDate = styled.div`
+ margin: 0.8rem 0.5rem;
+ font-size: 1.1em;
+ width: 300px;
+ text-align: left;
+ `;
+
+const Match = styled.div`
+  display: flex;
+  flex-direction; row; 
+  justify-content: center;
+  color: hsl(0, 0%, 10%);
+  font-size: 1.2em;
+ `;
+
+const Home = styled.div`
+  min-width: 120px;
+  text-align: right;
+ `;
+
+const Result = styled.div`
+  min-width: 90px;
+`;
+
+const Away = styled.div`
+  min-width: 120px;
+  text-align: left;
+ `;
+
 
 const Fixture = ({fixture}) => {
   const date = new Date(fixture.date).toLocaleDateString();
   return (
-    <div key={date}>
-      <div className="fixture-date">
+    <StyledFixture key={date}>
+      <MatchDate>
         {date}
-      </div>
-      <div className="match">
-        <div className="home-team">
+      </MatchDate>
+      <Match>
+        <Home>
           {getShortName(fixture.homeTeamName)}
-        </div>
-        <div className="result">
+        </Home>
+        <Result>
           -
-        </div>
-        <div className="away-team">
+        </Result>
+        <Away>
           {getShortName(fixture.awayTeamName)}
-        </div>
-      </div>
-    </div>
+        </Away>
+      </Match>
+    </StyledFixture>
   );
 };
 

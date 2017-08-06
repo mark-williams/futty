@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { getLeagueTable } from '../services/statsService';
+import getShortName from '../utils/team-utils';
 
 class League extends React.Component {
   constructor() {
@@ -43,7 +44,7 @@ class League extends React.Component {
   renderRow(team) {
     return (
       <div key={team.teamName} className="league-table__row">
-        <Link className="league-table__row--name" key={team.teamName} to={`/team/${team.id}`}>{team.teamName}</Link>
+        <Link className="league-table__row--name" key={team.teamName} to={`/team/${team.id}`}>{getShortName(team.teamName)}</Link>
         <div className="league-table__row--amount">{team.points}</div>
       </div>
     );

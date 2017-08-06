@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { lifecycle } from 'recompose';
 import { getTeam, getFixtures } from '../services/statsService';
+import Fixtures from './Fixtures';
 
 const Team = ({team, fixtures}) => {
   if (!team) {
@@ -12,6 +13,7 @@ const Team = ({team, fixtures}) => {
     <div>
       <h2>{team.shortName}</h2>
       <img className="team__badge" alt="team badge" src={team.crestUrl} />
+      <Fixtures fixtures={fixtures} />
     </div>
   );
 };

@@ -27,7 +27,7 @@ const Team = ({team, fixtures}) => {
 
 Team.propTypes = {
   team: PropTypes.object,
-  fixtures: PropTypes.object
+  fixtures: PropTypes.array
 };
 
 const getTeamData = (id) => {

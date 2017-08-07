@@ -10,7 +10,7 @@ const Fixtures = ({fixtures}) => {
   return (
     <div>
       <FixtureHeading>Fixtures</FixtureHeading>
-      {fixtures.map((f) => <Fixture fixture={f} />)}
+      {fixtures.map((f) => <Fixture key={f.date} fixture={f} />)}
     </div>
   );
 };

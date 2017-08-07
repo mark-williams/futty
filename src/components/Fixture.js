@@ -28,20 +28,21 @@ const Match = styled.div`
   font-size: 1.2rem;
  `;
 
-const Home = styled.div`
+const Team = styled.div`
   min-width: 120px;
+`;
+
+const Home = styled(Team)`
   text-align: right;
+ `;
+
+const Away = styled(Team)`
+  text-align: left;
  `;
 
 const Result = styled.div`
   min-width: 90px;
 `;
-
-const Away = styled.div`
-  min-width: 120px;
-  text-align: left;
- `;
-
 
 const Fixture = ({fixture}) => {
   const date = new Date(fixture.date).toLocaleDateString();

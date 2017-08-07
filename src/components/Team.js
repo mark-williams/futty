@@ -1,8 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { lifecycle } from 'recompose';
+import styled from 'styled-components';
 import { getTeam, getFixtures } from '../services/statsService';
 import Fixtures from './Fixtures';
+import getShortName from '../utils/team-utils';
+
+const TeamName = styled.div`
+  font-size: 1.8rem;
+  margin: 1rem 0 0.8rem 0;
+`;
 
 const Team = ({team, fixtures}) => {
   if (!team) {
@@ -11,7 +18,7 @@ const Team = ({team, fixtures}) => {
 
   return (
     <div>
-      <h2>{team.shortName}</h2>
+      <TeamName>{getShortName(team.name)}</TeamName>
       <img className="team__badge" alt="team badge" src={team.crestUrl} />
       <Fixtures fixtures={fixtures} />
     </div>

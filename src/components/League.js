@@ -26,6 +26,15 @@ const LeagueTableRow = styled.div`
   margin-bottom: 8px;
 `;
 
+const TeamName = styled.div`
+  flex: 5;
+`;
+
+const Value = styled.div`
+  flex: 1;
+  text-align: right;
+`;
+
 const LeagueTableHeader = styled(LeagueTableRow)`
   font-weight: bold;
 `;
@@ -62,8 +71,8 @@ class League extends React.Component {
   renderHeader() {
     return (
       <LeagueTableHeader>
-        <div className="league-table__row--name header">Team</div>
-        <div className="league-table__row--amount header">Points</div>
+        <TeamName>Team</TeamName>
+        <Value>Points</Value>
       </LeagueTableHeader>
     );
   }
@@ -71,8 +80,10 @@ class League extends React.Component {
   renderRow(team) {
     return (
       <LeagueTableRow key={team.teamName}>
-        <Link className="league-table__row--name" key={team.teamName} to={`/team/${team.id}`}>{getShortName(team.teamName)}</Link>
-        <div className="league-table__row--amount">{team.points}</div>
+        <TeamName key={team.teamName}>
+          <Link to={`/team/${team.id}`}>{getShortName(team.teamName)}</Link>
+        </TeamName>
+        <Value>{team.points}</Value>
       </LeagueTableRow>
     );
   }

@@ -1,7 +1,34 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 import { getLeagueTable } from '../services/statsService';
 import getShortName from '../utils/team-utils';
+
+
+const LeagueContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const LeagueTable = styled.div`
+  width: 30%;
+  min-width: 200px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+`;
+
+const LeagueTableRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  margin-bottom: 8px;
+`;
+
+const LeagueTableHeader = styled(LeagueTableRow)`
+  font-weight: bold;
+`;
 
 class League extends React.Component {
   constructor() {
@@ -34,31 +61,31 @@ class League extends React.Component {
 
   renderHeader() {
     return (
-      <div className="league-table__row">
+      <LeagueTableHeader>
         <div className="league-table__row--name header">Team</div>
         <div className="league-table__row--amount header">Points</div>
-      </div>
+      </LeagueTableHeader>
     );
   }
 
   renderRow(team) {
     return (
-      <div key={team.teamName} className="league-table__row">
+      <LeagueTableRow key={team.teamName}>
         <Link className="league-table__row--name" key={team.teamName} to={`/team/${team.id}`}>{getShortName(team.teamName)}</Link>
         <div className="league-table__row--amount">{team.points}</div>
-      </div>
+      </LeagueTableRow>
     );
   }
 
   render() {
     return (
-      <div className="league">
-        <h2>Premier League 2017-17</h2>
-        <div className="league-table">
+      <LeagueContainer>
+        <h2>Premier League 2017-18</h2>
+        <LeagueTable>
           {this.renderHeader()}
           {this.state.teams && this.state.teams.map((t) => this.renderRow(t))}
-        </div>
-      </div>
+        </LeagueTable>
+      </LeagueContainer>
     );
   }
 }

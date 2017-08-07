@@ -5,7 +5,7 @@ import Fixture from './Fixture';
 const Fixtures = ({fixtures}) => {
   return (
     <div>
-      <h4>Fixtures</h4>
+      <h2>Fixtures</h2>
       {fixtures.map((f) => <Fixture fixture={f} />)}
     </div>
   );

@@ -15,7 +15,7 @@ const StyledFixture = styled.div`
 
 const MatchDate = styled.div`
  margin: 0.8rem 0.5rem;
- font-size: 1.1em;
+ font-size: 1.0rem;
  width: 300px;
  text-align: left;
  `;
@@ -25,7 +25,7 @@ const Match = styled.div`
   flex-direction; row; 
   justify-content: center;
   color: hsl(0, 0%, 10%);
-  font-size: 1.2em;
+  font-size: 1.2rem;
  `;
 
 const Home = styled.div`

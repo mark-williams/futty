@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { getLeagueTable } from '../services/statsService';
 import getShortName from '../utils/team-utils';
-
+import colours from '../style/colours';
 
 const LeagueContainer = styled.div`
   display: flex;
@@ -37,6 +37,18 @@ const Value = styled.div`
 
 const LeagueTableHeader = styled(LeagueTableRow)`
   font-weight: bold;
+`;
+
+
+const TeamLink = styled(Link)`
+  text-decoration: none;
+  color: ${colours.primaryFont};
+  &:visited {
+    color: ${colours.primaryFont};
+  };
+  &:hover {
+    color: hsl(0, 10%, 50%);
+  };
 `;
 
 class League extends React.Component {
@@ -81,7 +93,7 @@ class League extends React.Component {
     return (
       <LeagueTableRow key={team.teamName}>
         <TeamName key={team.teamName}>
-          <Link to={`/team/${team.id}`}>{getShortName(team.teamName)}</Link>
+          <TeamLink to={`/team/${team.id}`}>{getShortName(team.teamName)}</TeamLink>
         </TeamName>
         <Value>{team.points}</Value>
       </LeagueTableRow>

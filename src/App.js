@@ -11,7 +11,7 @@ class App extends Component {
           <h2>Welcome to Futty</h2>
           <p>Get your football stats here!</p>
         </div>
-        <div className="content">
+        <div>
           <Router>
             {routes}
           </Router>

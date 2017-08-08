@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { TeamLink } from '../style';
 import { getLeagueTable } from '../services/statsService';
-import getShortName from '../utils/team-utils';
+import { getShortName } from '../utils/team-utils';
 
 const LeagueContainer = styled.div`
   display: flex;
@@ -37,8 +37,6 @@ const Value = styled.div`
 const LeagueTableHeader = styled(LeagueTableRow)`
   font-weight: bold;
 `;
-
-
 
 class League extends React.Component {
   constructor() {

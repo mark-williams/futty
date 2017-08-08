@@ -4,7 +4,7 @@ import { lifecycle } from 'recompose';
 import styled from 'styled-components';
 import { getTeam, getFixtures } from '../services/statsService';
 import Fixtures from './Fixtures';
-import getShortName from '../utils/team-utils';
+import { getShortName } from '../utils/team-utils';
 
 const TeamName = styled.div`
   font-size: 1.8rem;

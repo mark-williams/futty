@@ -7,4 +7,12 @@ const getShortName = (fullName) => {
   return fullName.substring(0, idx);
 };
 
-export default getShortName;
+
+// Sadly the api doesn't include the id of the team in its response, so we'll have to
+// extract it from the link it provides
+const getTeamId = (teamLink) => {
+  const parts = teamLink.split('/');
+  return parseInt(parts[parts.length - 1], 10);
+};
+
+export { getShortName, getTeamId };

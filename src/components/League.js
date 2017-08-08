@@ -1,9 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { TeamLink } from '../style';
 import { getLeagueTable } from '../services/statsService';
 import getShortName from '../utils/team-utils';
-import colours from '../style/colours';
 
 const LeagueContainer = styled.div`
   display: flex;
@@ -40,16 +39,6 @@ const LeagueTableHeader = styled(LeagueTableRow)`
 `;
 
 
-const TeamLink = styled(Link)`
-  text-decoration: none;
-  color: ${colours.primaryFont};
-  &:visited {
-    color: ${colours.primaryFont};
-  };
-  &:hover {
-    color: hsl(0, 10%, 50%);
-  };
-`;
 
 class League extends React.Component {
   constructor() {

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { TeamLink } from '../style';
 import { getLeagueTable } from '../services/statsService';
-import { getShortName } from '../utils/team-utils';
+import { getShortName, getTeamId } from '../utils/team-utils';
 
 const LeagueContainer = styled.div`
   display: flex;
@@ -56,15 +56,14 @@ class League extends React.Component {
 
   mapLeagueData(data) {
     return data.map((team) => {
-      return { ...team, id: this.getTeamId(team) };
+      return { ...team, id: this.getIdFromTeam(team) };
     });
   }
 
-  getTeamId(team) {
+  getIdFromTeam(team) {
     // Sadly the api doesn't include the id of the team in its response, so we'll have to
     // extract it from the link it provides
-    const parts = team._links.team.href.split('/');
-    return parseInt(parts[parts.length - 1], 10);
+    return getTeamId( team._links.team.href);
   }
 
   renderHeader() {

@@ -40,18 +40,19 @@ const getTeamData = (id) => {
     .then(responses => Promise.all(responses.map(resp => resp.json())));
 };
 
+const mapTeamToState = (data) => ({ team: data[0], fixtures: data[1].fixtures }); 
 
 const teamWithLifecycle = lifecycle({
   componentDidMount() {
     const teamId = this.props.match.params.id;
     getTeamData(teamId)
-      .then((results) => this.setState({ team: results[0], fixtures: results[1].fixtures }))
+      .then((results) => this.setState(mapTeamToState(results)))
       .catch(() => this.setState({ error: 'Error retrieving data' }));
   },
   componentWillReceiveProps(nextProps) {
     if (nextProps.match.params.id !== this.props.match.params.id) {
       getTeamData(nextProps.match.params.id)
-      .then((results) => this.setState({ team: results[0], fixtures: results[1].fixtures }))
+      .then((results) => this.setState(mapTeamToState(results)))
       .catch(() => this.setState({ error: 'Error retrieving data' }));
     }
   }

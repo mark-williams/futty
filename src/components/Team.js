@@ -49,10 +49,11 @@ const teamWithLifecycle = lifecycle({
       .catch(() => this.setState({ error: 'Error retrieving data' }));
   },
   componentWillReceiveProps(nextProps) {
-    this.setState({id: nextProps.match.params.id});
-    getTeamData(nextProps.match.params.id)
+    if (nextProps.match.params.id !== this.props.match.params.id) {
+      getTeamData(nextProps.match.params.id)
       .then((results) => this.setState({ team: results[0], fixtures: results[1].fixtures }))
       .catch(() => this.setState({ error: 'Error retrieving data' }));
+    }
   }
 })(Team);
 

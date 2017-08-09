@@ -40,7 +40,7 @@ const getTeamData = (id) => {
     .then(responses => Promise.all(responses.map(resp => resp.json())));
 };
 
-const mapTeamToState = (data) => ({ team: data[0], fixtures: data[1].fixtures }); 
+const mapTeamToState = (data) => ({ team: data[0], fixtures: data[1].fixtures });
 
 const teamWithLifecycle = lifecycle({
   componentDidMount() {

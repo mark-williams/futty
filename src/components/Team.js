@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { lifecycle } from 'recompose';
 import styled from 'styled-components';
@@ -21,6 +22,7 @@ const Team = ({team, fixtures}) => {
       <TeamName>{getShortName(team.name)}</TeamName>
       <img className="team__badge" alt="team badge" src={team.crestUrl} />
       <Fixtures fixtures={fixtures} />
+       <Link to={'/team/64'}>Sample link</Link>
     </div>
   );
 };
@@ -43,6 +45,12 @@ const teamWithLifecycle = lifecycle({
   componentDidMount() {
     const teamId = this.props.match.params.id;
     getTeamData(teamId)
+      .then((results) => this.setState({ team: results[0], fixtures: results[1].fixtures }))
+      .catch(() => this.setState({ error: 'Error retrieving data' }));
+  },
+  componentWillReceiveProps(nextProps) {
+    this.setState({id: nextProps.match.params.id});
+    getTeamData(nextProps.match.params.id)
       .then((results) => this.setState({ team: results[0], fixtures: results[1].fixtures }))
       .catch(() => this.setState({ error: 'Error retrieving data' }));
   }

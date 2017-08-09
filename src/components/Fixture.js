@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { getShortName } from '../utils/team-utils';
-
+import { getShortName, getTeamId } from '../utils/team-utils';
+import { TeamLink } from '../style';
 
 const StyledFixture = styled.div`
   display: flex;
@@ -44,8 +44,11 @@ const Result = styled.div`
   min-width: 90px;
 `;
 
+
 const Fixture = ({fixture}) => {
   const date = new Date(fixture.date).toLocaleDateString();
+  const homeTeam = getTeamId(fixture._links.homeTeam.href);
+  const awayTeam = getTeamId(fixture._links.awayTeam.href);
   return (
     <StyledFixture key={date}>
       <MatchDate>
@@ -53,13 +56,13 @@ const Fixture = ({fixture}) => {
       </MatchDate>
       <Match>
         <Home>
-          {getShortName(fixture.homeTeamName)}
+          <TeamLink to={`/team/${homeTeam}`}>{getShortName(fixture.homeTeamName)}</TeamLink>
         </Home>
         <Result>
           -
         </Result>
         <Away>
-          {getShortName(fixture.awayTeamName)}
+          <TeamLink to={`/team/${awayTeam}`}>{getShortName(fixture.awayTeamName)}</TeamLink>
         </Away>
       </Match>
     </StyledFixture>

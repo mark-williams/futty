@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import styled from 'styled-components';
-import routes from './routes';
-import { colours } from './style';
+import RouteContainer from './components/RouteContainer';
 import './style/App.css';
 
-const Container = styled.div`
+const AppStyle = styled.div`
   text-align: center;
   color: hsl(0, 0%, 32%);
   font-size: 16px;
@@ -18,45 +17,21 @@ const Header = styled.div`
   color: hsl(0, 0%, 91%);
 `;
 
-const Navigation = styled.div`
-  background-color: ${colours.secondary};
-  height: 20px;
-  padding: 4px;
-  color: #fff;
-  text-align: left;
-`;
-
 class App extends Component {
   render() {
     return (
-      <Container>
+      <AppStyle>
         <Header>
           <h2>Welcome to Futty</h2>
           <p>Get your football stats here!</p>
         </Header>
         <Router>
-          <Route path="/" component={MainContainer}>
-           
-          </Route>
+          <Route path="/" component={RouteContainer} />
          </Router>
-        
-      </Container>
+      </AppStyle>
     );
   }
 }
-
-const MainContainer = (props) => (
-   <div>
-     <Nav />
-     {routes}
-  </div>
-);
-
-const Nav = () => (
-  <Navigation>
-    <NavLink to={'/'}>Home</NavLink>
-  </Navigation>
-);
 
 export default App;
 

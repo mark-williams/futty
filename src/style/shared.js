@@ -9,7 +9,7 @@ const TeamLink = styled(Link)`
     color: ${colours.primaryFont};
   };
   &:hover {
-    color: hsl(0, 10%, 50%);
+    color: ${colours.secondary};
   };
 `;
 

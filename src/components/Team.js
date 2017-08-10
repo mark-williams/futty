@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { lifecycle } from 'recompose';
 import styled from 'styled-components';
@@ -22,7 +21,6 @@ const Team = ({team, fixtures}) => {
       <TeamName>{getShortName(team.name)}</TeamName>
       <img className="team__badge" alt="team badge" src={team.crestUrl} />
       <Fixtures fixtures={fixtures} />
-       <Link to={'/team/64'}>Sample link</Link>
     </div>
   );
 };

@@ -11,7 +11,13 @@ const LeagueContainer = styled.div`
 `;
 
 const LeagueTable = styled.div`
-  min-width: 200px;
+  width: 85%;
+  font-size: 0.8rem;
+  @media (min-width: 560px) {
+    width: 380px;
+    font-size: 1rem;
+	}
+  min-width: 300px;
   text-align: left;
   display: flex;
   flex-direction: column;
@@ -19,19 +25,17 @@ const LeagueTable = styled.div`
 
 const LeagueTableRow = styled.div`
   display: flex;
-  min-width: 500px;
   flex-direction: row;
   flex: 1;
   margin-bottom: 8px;
 `;
 
 const TeamName = styled.div`
-  flex: 3;
+  flex: 4;
 `;
 
 const Value = styled.div`
   flex: 1;
-  //min-width: 40px;
   text-align: right;
 `;
 
@@ -71,7 +75,7 @@ class League extends React.Component {
     return (
       <LeagueTableHeader>
         <TeamName>Team</TeamName>
-        <Value>Played</Value>
+        <Value>Pld</Value>
         <Value>W</Value>
         <Value>D</Value>
         <Value>L</Value>
